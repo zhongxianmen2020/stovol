@@ -1,7 +1,7 @@
 ---
 title: "stovol: An R package on Bayesian Markov Chain Monte Carlo inference for stochastic volatility models"
 author: "Zhongxian Men, Chengguo Weng"
-date: "1/22/2022"
+date: "1/30/2022"
 output: 
 html_document:
   toc: true
@@ -129,7 +129,7 @@ where $\hat{x}_t, t=1, ..., T$ are the estimated volatilities which are the by-p
 ```{r}
 QQ_plot(model_fit$standard_residuals)
 ```
-The K-S test for the normality assumption shows that the `p`-value is 0.2261. So we can not reject the non hypothes that the standardized residuals follow a univariate normal distribution.
+The K-S test for the normality assumption shows that the `p`-value is 0.2118. So we can not reject the non hypothes that the standardized residuals follow a univariate normal distribution.
 
 Another approach is to assess [probability integral transforms ](https://en.wikipedia.org/wiki/Probability_integral_transform) (PITs) obtained from fitted BSV models based on the training data. If the fitted BSV model agrees with the data, the PITs will follow a uniform distribution $U(0,1)$. Again, we use the K-S test to test the Uniform distribution of the PITs.
 
@@ -148,7 +148,7 @@ $\underline{Note}$: For in-sample one-step_ahead prediction, $u(t)$ can be calcu
 pit_plot(model_fit$pit)
 ```
 
-The two blue lines in the upper plot are the 95% Bayesian confidence interval. The K-S test for the Uniform distribution assumption shows that the `p`-value is 0.2261. So we can not reject the non hypothesis that the PITs calculated from the fitted BSV model based on the training data follow a uniform distribution in the interval (0,1).
+The two blue lines in the upper plot are the 95% Bayesian confidence interval. The K-S test for the Uniform distribution assumption shows that the `p`-value is 0.3136. So we can not reject the non hypothesis that the PITs calculated from the fitted BSV model based on the training data follow a uniform distribution in the interval (0,1).
 
 As usual, we also give AIC and BIC of the fitted model to the data.
 
@@ -288,7 +288,7 @@ Residual_t =y_t*\exp(-\hat{x}_t/2),
 ```{r}
 QQ_plot(model_fit$standard_residuals)
 ```
-The K-S test for the normality assumption shows that the `p`-value is 0.2173. So we can not reject the non hypothesis that the standardized residuals follow a univariate normal distribution.
+The K-S test for the normality assumption shows that the `p`-value is 0.2203. So we can not reject the non hypothesis that the standardized residuals follow a univariate normal distribution.
 
 Another approach is to assess [probability integral transforms (PITs)](https://en.wikipedia.org/wiki/Probability_integral_transform) obtained from fitted SDE models. If the fitted ASV model agrees with the data, the PITs will follow a uniform distribution $U(0,1)$. Again, we use the K-S test to test the uniformality of the PITs.
 
@@ -305,7 +305,7 @@ Under the null hypothesis that the sequence $\{p(y_t|{\cal F}_{t-1})\}_{t=1}^{T}
 pit_plot(model_fit$pit)
 ```
 
-The two blue lines are the 95% confidence interval. The K-S test for the Uniform distributional assumption shows that the `p`-value is 0.2173. So we can not reject the non hypothesis that the PITs calculated from the fitted ASV model based on the training data follow a Uniform distribution in the interval (0,1).
+The two blue lines are the 95% confidence interval. The K-S test for the Uniform distributional assumption shows that the `p`-value is 0.3108. So we can not reject the non hypothesis that the PITs calculated from the fitted ASV model based on the training data follow a Uniform distribution in the interval (0,1).
 
 As usual, we also give AIC and BIC of the fitted model to the data.
 
