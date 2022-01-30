@@ -267,18 +267,19 @@ stovol = function(data, burn_in, N, model_type){
     mean(est[,2])
     mean(est[,3])
 
-
     sd(est[,1])
     sd(est[,2])
     sd(est[,3])
 
 
-    pit = rep(0, T)
+    pit = rep(0, T-1)
 
-    for ( t in 1:T){
-      temp_v = exp(z_est[t]/2)
-      pit[t] = pnorm(y[t],0,  temp_v)
+    for ( t in 2:T){
+      temp = mu +phi*(z_est[t-1]-mu)
+      temp = exp(temp/2)
+      pit[t-1] = pnorm(y[t],0,  temp)
     }
+
 
     std_error =  rep(0, T)
     for ( t in 1:T){
@@ -302,7 +303,7 @@ stovol = function(data, burn_in, N, model_type){
   }
 
 
-  # now we fit MOU model
+  # now we fit ASV model
 
   if (toupper(model_type) %in% c("ASV")){
 
@@ -570,14 +571,26 @@ stovol = function(data, burn_in, N, model_type){
     phi = mean(est[,2])
     rho = mean(est[,3])
     sigma1 = mean(est[,4])
-    z_est = z_est/{N-n}
+    z_est = z_est/(N-n)
 
-    pit = rep(0, T)
 
-    for ( t in 1:T){
-      temp_v = exp(z_est[t]/2)
-      pit[t] = pnorm(y[t],0,  temp_v)
+    # pit = rep(0, T-1)
+    #
+    # for ( t in 2:T){
+    #   temp = mu +phi(z_est[t-1]-mu)
+    #   temp_v = exp(temp/2)
+    #   pit[t] = pnorm(y[t],0,  temp_v)
+    # }
+
+
+    pit = rep(0, T-1)
+
+    for ( t in 2:T){
+      temp2 = mu + phi*(z_est[t-1]-mu)+ sigma1*rho*y[t-1]*exp(-z_est[t-1]/2)
+      temp2 = exp(temp2/2)
+      pit[t-1] = pnorm(y[t],0,  temp2)
     }
+
 
     std_error =  rep(0, T)
     for ( t in 1:T){

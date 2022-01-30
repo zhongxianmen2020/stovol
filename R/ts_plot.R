@@ -66,11 +66,11 @@ ts_plot = function(est){
          cex.lab=1.9, cex.axis = 1.5)
 
     plot(nn, est[,3], type="l", lwd=2, col="blue",
-         main=expression(paste("Time series of ", phi)), cex.main=1.5,
+         main=expression(paste("Time series of ", rho)), cex.main=1.5,
          cex.lab=1.9, cex.axis = 1.5)
 
     hist(est[,3],  lwd=2, col="blue",xlab="", ylab="",
-         main=expression(paste("Histogram of ", phi)), cex.main=1.5,
+         main=expression(paste("Histogram of ", rho)), cex.main=1.5,
          cex.lab=1.9, cex.axis = 1.5)
 
     plot(nn, est[,4], type="l", lwd=2, col="blue",
