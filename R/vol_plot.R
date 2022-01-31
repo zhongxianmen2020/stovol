@@ -21,7 +21,7 @@ vol_plot = function(y, z){
 
     nn=1:m
     plot(nn, abs(y), type="l", lwd=2, col="blue",xlab="", ylab="",
-         main=expression(paste("Time series of the absolte returns")), cex.main=1.5,
+         main=expression(paste("Time series of the absolute returns")), cex.main=1.5,
          cex.lab=1.9, cex.axis = 1.5)
 
 

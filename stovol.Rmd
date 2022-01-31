@@ -121,7 +121,7 @@ For goodness-of-fit assessment of the estimated BSV models, there are a number o
 The standardized residuals calculated using the formula below would follow a standard normal distribution.
 
 \[
-Residual_t =y_t*\exp(-\hat{x}_t/2),
+Residual_t =y_t*\exp(-\hat{h}_t/2),
 \]
 
 where $\hat{x}_t, t=1, ..., T$ are the estimated volatilities which are the by-products of the MCMC estimation method.
@@ -129,7 +129,7 @@ where $\hat{x}_t, t=1, ..., T$ are the estimated volatilities which are the by-p
 ```{r}
 QQ_plot(model_fit$standard_residuals)
 ```
-The K-S test for the normality assumption shows that the `p`-value is 0.2118. So we can not reject the non hypothes that the standardized residuals follow a univariate normal distribution.
+The K-S test for the normality assumption shows that the `p`-value is 0.2118. So we can not reject the non hypothesis that the standardized residuals follow a univariate normal distribution.
 
 Another approach is to assess [probability integral transforms ](https://en.wikipedia.org/wiki/Probability_integral_transform) (PITs) obtained from fitted BSV models based on the training data. If the fitted BSV model agrees with the data, the PITs will follow a uniform distribution $U(0,1)$. Again, we use the K-S test to test the Uniform distribution of the PITs.
 
@@ -161,7 +161,7 @@ model_fit$Aic
 model_fit$Bic
 ```
 
-Now we compare the absolute returns $abs(y_t)$ with the estimated volatilities $\exp(hat{x_t}/2)$.
+Now we compare the absolute returns $abs(y_t)$ with the estimated volatilities $\exp(\hat{h_t}/2)$.
 
 ```{r}
 vol_plot(y, model_fit$est_volatilities)
@@ -282,7 +282,7 @@ For goodness-of-fit assessment of the estimated SDE models, there are a number o
 The standardized residuals calculated using the formula below would follow a standard normal distribution.
 
 \[
-Residual_t =y_t*\exp(-\hat{x}_t/2),
+Residual_t =y_t*\exp(-\hat{h}_t/2),
 \]
 
 ```{r}
@@ -319,7 +319,7 @@ model_fit$Aic
 model_fit$Bic
 ```
 
-Now we compare the absolute returns $abs(y_t)$ with the estimated volatilities $\exp(-hat{x_t}/2)$.
+Now we compare the absolute returns $abs(y_t)$ with the estimated volatilities $\exp(-\hat{h_t}/2)$.
 
 ```{r}
 vol_plot(y, model_fit$est_volatilities)
