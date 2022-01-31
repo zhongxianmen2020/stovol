@@ -227,18 +227,14 @@ x11 = mu + sigma1/sqrt(1.0-phi*phi)*temp
 for (i in 1:(k1-1)){
   temp = rnorm(1, 0, 1)
   y[1] = exp(x11/2.0)* temp
-
   temp = rnorm(1, 0, 1)
   x2 = mu + phi * (x11-mu)+ sigma1*rho*y[1]*exp(-x11/2) +sigma1*sqrt(1-rho*rho)*temp
   x11 = x2
-
 }
 
 for (t in 2:T){
-
   temp = rnorm(1, 0, 1)
   y[t] = exp(x11/2.0)* temp
-
   temp = rnorm(1, 0, 1)
   x2 = mu + phi * (x11-mu)+ sigma1*rho*y[t]*exp(-x11/2) +sigma1*sqrt(1-rho*rho)*temp
   x11 = x2
